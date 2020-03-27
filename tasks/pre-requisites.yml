@@ -1,0 +1,11 @@
+---
+
+- name: 'Ask Java version'
+  command: 'java -version'
+  register: java
+
+- name: 'Assert Java version'
+  assert:
+    that:
+      - "'version' in java.stderr"
+

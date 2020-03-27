@@ -1,2 +1,7 @@
 ---
-# tasks file for artifactory
+
+- name: 'Sound-check'
+  include: pre-requisites.yml
+
+- name: 'Install Artifactory'
+  include: install.yml

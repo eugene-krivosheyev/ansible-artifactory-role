@@ -1,2 +1,12 @@
 ---
-# defaults file for artifactory
+artifactory_version: "7.3.2" #You can use $latest token in artifactory_url to check up fresh version.
+artifactory_license: oss
+
+artifactory_username: "admin"
+artifactory_password: "password"
+
+jfrog_home: "/usr/share/jfrog"
+artifactory_home: "{{ jfrog_home }}/artifactory"
+
+artifactory_data_filestore_path: "/opt/artifactory/filestore"
+artifactory_data_filestore_maxsize: 5GB

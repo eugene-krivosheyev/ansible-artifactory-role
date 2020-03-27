@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  ci_host:
+    container_name: ci_host
+    restart: always
+    image: rastasheep/ubuntu-sshd:18.04
+    networks: 
+      - hosting_network
+    ports:
+      - "2200:22"
+      - "8080:8080"
+
+networks:
+  hosting_network:

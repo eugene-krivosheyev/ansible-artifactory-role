@@ -1,2 +1,8 @@
 ---
-# vars file for artifactory
+artifactory_basename: "jfrog-artifactory-{{ artifactory_license }}"
+artifactory_basename_version: "{{ artifactory_basename }}-{{ artifactory_version }}"
+artifactory_file: "{{ artifactory_basename_version }}-linux.tar.gz"
+artifactory_url: "https://api.bintray.com/content/jfrog/artifactory/org/artifactory/{{ artifactory_license }}/{{ artifactory_basename }}/{{ artifactory_version }}/{{ artifactory_file }};bt_package={{ artifactory_basename }}"
+
+artifactory_home_full: "{{ jfrog_home }}/{{ artifactory_basename_version }}"
+artifactory_home_link: "{{ artifactory_home }}"
