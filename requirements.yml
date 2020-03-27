@@ -1,1 +1,3 @@
 - src: https://github.com/eugene-krivosheyev/ansible-artifactory-role
+  name: artifactory
+  version: master
