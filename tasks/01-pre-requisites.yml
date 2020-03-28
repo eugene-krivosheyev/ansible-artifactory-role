@@ -1,0 +1,25 @@
+---
+
+- name: Ensure unzip utility
+  tags: unzip
+  package: 
+    name: unzip
+    state: present
+
+- name: Stop linux service
+  tags: service
+  command: "service {{ artifactory_os_service_name }} stop"
+  ignore_errors: yes
+
+- name: Get rid of old Artifactory configuration
+  tags: config
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ artifactory_home }}/var/etc/access/bootstrap.creds"
+    - "{{ artifactory_home }}/var/etc/system.yaml"
+    - "{{ artifactory_home }}/var/etc/artifactory/artifactory.system.properties"
+    - "{{ artifactory_home }}/var/etc/artifactory/logback.xml"
+    - "{{ artifactory_home }}/var/etc/artifactory/binarystore.xml"
+    - "{{ artifactory_home }}/var/etc/artifactory/artifactory.config.import.xml"

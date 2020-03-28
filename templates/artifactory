@@ -1,0 +1,51 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          {{ artifactory_os_service_name }}
+# Required-Start:    $local_fs $network $named $time $syslog
+# Required-Stop:     $local_fs $network $named $time $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Description:       JFrog Artifactory {{ artifactory_version }} {{ artifactory_license }}
+### END INIT INFO
+
+SCRIPT="{{ artifactory_home }}/app/bin/artifactory.sh"
+
+start() {
+  su -c "$SCRIPT start" {{ artifactory_os_user_name }}
+}
+
+stop() {
+  su -c "$SCRIPT stop" {{ artifactory_os_user_name }}
+}
+
+uninstall() {
+  su -c "$SCRIPT uninstall" {{ artifactory_os_user_name }}
+}
+
+restart() {
+  su -c "$SCRIPT restart" {{ artifactory_os_user_name }}
+}
+
+status() {
+  su -c "$SCRIPT status" {{ artifactory_os_user_name }}
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  uninstall)
+    uninstall
+    ;;
+  restart)
+    restart
+    ;;
+  status)
+    status
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+esac

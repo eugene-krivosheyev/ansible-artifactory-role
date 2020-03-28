@@ -1,7 +1,13 @@
 ---
 
-- name: 'Sound-check'
-  include: pre-requisites.yml
+- name: Sound-check
+  include: 01-pre-requisites.yml
 
-- name: 'Install Artifactory'
-  include: install.yml
+- name: Install Artifactory distr
+  include: 02-install-distr.yml
+
+- name: Configure Artifactory
+  include: 03-configure-distr.yml
+
+- name: Set up Artifactory as linux service
+  include: 04-install-service.yml

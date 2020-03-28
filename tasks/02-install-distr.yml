@@ -1,0 +1,51 @@
+---
+
+- name: Create user to run Artifactory
+  tags: user
+  user:
+    name: "{{ artifactory_os_user_name }}"
+    create_home: no
+
+- name: Create JFROG_HOME folder
+  tags: env
+  file: 
+    path: "{{ jfrog_home }}"
+    state: directory
+    owner: "{{ artifactory_os_user_name }}"
+    group: "{{ artifactory_os_user_name }}"
+    recurse: yes
+
+- name: Download Artifactory distr
+  tags: distr
+  unarchive:
+    creates: "{{ artifactory_home_full }}" # Skip download and unzip if already done
+    src: "{{ artifactory_url }}"
+    dest: "{{ jfrog_home }}"
+    owner: "{{ artifactory_os_user_name }}"
+    group: "{{ artifactory_os_user_name }}"
+    validate_certs: no
+    copy: no
+  retries: 3
+
+- name: Make Artifactory home link
+  tags: distr
+  file:
+    src: "{{ artifactory_home_full }}"
+    dest: "{{ artifactory_home }}"
+    owner: "{{ artifactory_os_user_name }}"
+    group: "{{ artifactory_os_user_name }}"
+    state: link
+
+- name: Persist JFROG_HOME environment variable
+  tags: env
+  lineinfile: 
+    path: '/etc/environment'
+    line: "JFROG_HOME={{ jfrog_home }}"
+    create: yes
+
+- name: Persist ARTIFACTORY_HOME environment variable
+  tags: env
+  lineinfile: 
+    path: '/etc/environment'
+    line: "ARTIFACTORY_HOME={{ artifactory_home }}"
+    create: yes

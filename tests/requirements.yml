@@ -1,0 +1,4 @@
+- src: /Users/eugene/Projects/ansible-artifactory-role
+  scm: git
+  name: ekr.artifactory
+  version: master

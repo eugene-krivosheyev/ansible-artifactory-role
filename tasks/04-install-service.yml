@@ -1,0 +1,27 @@
+---
+
+- name: Set up linux service file
+  tags: service
+  template:
+    src: artifactory
+    dest: "/etc/init.d/{{ artifactory_os_service_name }}"
+    owner: "{{ artifactory_os_user_name }}"
+    group: "{{ artifactory_os_user_name }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: Set up Artifactory access to linux log directory
+  tags: service
+  file:
+    path: /var/log/artifactory.log
+    state: touch
+    owner: "{{ artifactory_os_user_name }}"
+    group: "{{ artifactory_os_user_name }}"
+    mode: u=rw,g=rw,o=r
+
+- name: Register linux service
+  tags: service
+  command: "update-rc.d {{ artifactory_os_service_name }} defaults"
+
+- name: Restart linux service
+  tags: service
+  command: "service {{ artifactory_os_service_name }} start"

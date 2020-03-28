@@ -1,0 +1,33 @@
+---
+
+- name: Set up Artifactory admin account file
+  tags: config
+  template:
+    src: bootstrap.creds
+    dest: "{{ artifactory_home }}/var/etc/access/"
+    owner: "{{ artifactory_os_user_name }}"
+    group: "{{ artifactory_os_user_name }}"
+    mode: u=rw,g=,o=
+
+- name: Set up Artifactory main config file
+  tags: config
+  template:
+    src: system.yaml
+    dest: "{{ artifactory_home }}/var/etc/"
+    owner: "{{ artifactory_os_user_name }}"
+    group: "{{ artifactory_os_user_name }}"
+    mode: u=rw,g=r,o=r
+
+- name: Set up Artifactory secondary config files
+  tags: config
+  template:
+    src: "{{ item }}"
+    dest: "{{ artifactory_home }}/var/etc/artifactory/"
+    owner: "{{ artifactory_os_user_name }}"
+    group: "{{ artifactory_os_user_name }}"
+    mode: u=rw,g=r,o=r
+  with_items:
+    - artifactory.system.properties
+    - logback.xml
+    - binarystore.xml
+    - artifactory.config.import.xml

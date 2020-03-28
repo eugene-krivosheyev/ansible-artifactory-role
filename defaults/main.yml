@@ -5,8 +5,12 @@ artifactory_license: oss
 artifactory_username: "admin"
 artifactory_password: "password"
 
-jfrog_home: "/usr/share/jfrog"
+artifactory_port: 8081
+artifactory_ui_port: 8082
+
+artifactory_corp_maven_repo: 'com.acme.corp'
+
+jfrog_home: "/opt/jfrog"
 artifactory_home: "{{ jfrog_home }}/artifactory"
 
-artifactory_data_filestore_path: "/opt/artifactory/filestore"
-artifactory_data_filestore_maxsize: 5GB
+artifactory_java_opts: "-Xms1G -Xmx1G"
