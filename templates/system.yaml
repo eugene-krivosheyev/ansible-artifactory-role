@@ -75,8 +75,8 @@ shared:
     ## To set everything by default, touch nothing
     {% endif %}
 
-    ## Non-default Embedded derby
     {% if artifactory_database_type == 'derby' %}
+    ## Non-default Embedded derby
     type: "derby"
     driver: "org.apache.derby.jdbc.EmbeddedDriver"
     url: "jdbc:derby:{{ artifactory_database }};create=true" # By default Derby's folder is $ARTIFACTORY_HOME/var/data
@@ -84,8 +84,8 @@ shared:
     password: "{{ artifactory_database_password }}"
     {% endif %}
 
-    ## Example for postgresql
     {% if artifactory_database_type == 'postgresql' %}
+    ## Example for postgresql
     type: postgresql
     driver: org.postgresql.Driver
     url: "jdbc:postgresql://{{ artifactory_database }}"
@@ -93,8 +93,8 @@ shared:
     password: "{{ artifactory_database_password }}"
     {% endif %}
 
-    ## Example for mysql
     {% if artifactory_database_type == 'mysql' %}
+    ## Example for mysql
     type: mysql
     driver: com.mysql.jdbc.Driver
     url: "jdbc:mysql://{{ artifactory_database }}"
@@ -102,8 +102,8 @@ shared:
     password: "{{ artifactory_database_password }}"
     {% endif %}
 
-    ## Example for oracle
     {% if artifactory_database_type == 'oracle' %}
+    ## Example for oracle
     type: oracle
     driver: oracle.jdbc.OracleDriver
     url: "jdbc:oracle:{{ artifactory_database }}"
@@ -111,8 +111,8 @@ shared:
     password: "{{ artifactory_database_password }}"
     {% endif %}
 
-    ## Example for mssql
     {% if artifactory_database_type == 'mssql' %}
+    ## Example for mssql
     type: mssql
     driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: "jdbc:sqlserver://{{ artifactory_database }}"
@@ -120,8 +120,8 @@ shared:
     password: "{{ artifactory_database_password }}"
     {% endif %}
 
-    ## Example for mariadb
     {% if artifactory_database_type == 'mariadb' %}
+    ## Example for mariadb
     type: mariadb
     driver: org.mariadb.jdbc.Driver
     url: "jdbc:mariadb://{{ artifactory_database }}"

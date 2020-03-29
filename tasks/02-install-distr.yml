@@ -15,7 +15,7 @@
     group: "{{ artifactory_os_user_name }}"
     recurse: yes
 
-- name: Download Artifactory distr
+- name: Download and unarchive Artifactory distr
   tags: distr
   unarchive:
     creates: "{{ artifactory_home_full }}" # Skip download and unzip if already done
