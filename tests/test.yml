@@ -14,7 +14,7 @@
 
   roles:
     - role: geerlingguy.postgresql # Testing this role against not only default Derby database but Postgres too.
-      become_method: su
+      become_method: su # Need by choosen Docker testing environment. May fail while testing on production hosts and needed to remove.
       postgresql_databases:
         - name: artifactory-db
           owner: artifactory-db-user
