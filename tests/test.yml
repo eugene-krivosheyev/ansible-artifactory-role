@@ -31,7 +31,7 @@
       artifactory_ui_port: 8082
       artifactory_username: artifactory-web-user
       artifactory_password: artifactory-web-password
-      artifactory_database_type: 'postgresql'
-      artifactory_database: 'localhost:5432/artifactorydb'
+      artifactory_database_type: postgresql
+      artifactory_database: 'localhost:5432/artifactory-db'
       artifactory_database_user: artifactory-db-user
       artifactory_database_password: artifactory-db-password
