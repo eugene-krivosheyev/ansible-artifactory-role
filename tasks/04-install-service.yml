@@ -22,10 +22,6 @@
   tags: service
   command: "update-rc.d {{ artifactory_os_service_name }} defaults"
 
-# - name: Restart linux service
-#   tags: service
-#   command: "service {{ artifactory_os_service_name }} start"
-
 - name: Restart linux service
   tags: service
   service:
