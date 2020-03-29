@@ -15,10 +15,7 @@ Variables that could be customized described in [defaults/main.yml](defaults/mai
 Example _requirements.yml_ to add this role to your playbook
 ------------------------------------------------------------
 ```yml
-- src: https://github.com/eugene-krivosheyev/ansible-artifactory-role
-  scm: git
-  name: ekr.artifactory
-  version: master
+- src: eugene_krivosheyev.artifactory
 ```
 
 
@@ -27,7 +24,7 @@ Example playbook
 ```yml
 - hosts: ci_server
   roles:
-    - role: ekr.artifactory
+    - role: eugene_krivosheyev.artifactory
       artifactory_port: 8081
       artifactory_ui_port: 8082
       artifactory_username: admin
