@@ -1,4 +1,4 @@
 - src: /Users/eugene/Projects/ansible-artifactory-role
   scm: git
-  name: ekr.artifactory
+  name: eugene_krivosheyev.artifactory
   version: master
