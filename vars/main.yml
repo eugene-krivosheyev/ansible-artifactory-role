@@ -1,5 +1,7 @@
 ---
 
+artifactory_license: oss
+
 artifactory_file_license: "artifactory-{{ artifactory_license }}"
 artifactory_file: "jfrog-{{ artifactory_file_license }}"
 artifactory_file_version: "{{ artifactory_file }}-{{ artifactory_version }}"

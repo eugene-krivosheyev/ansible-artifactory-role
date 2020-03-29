@@ -6,7 +6,6 @@ all:
 
   hosts:
     test_host:
-      # ansible_ssh_private_key_file: /Users/eugene/Dropbox/Eugene/Backups/agile-practices-dev.pem
       ansible_host: 127.0.0.1 
       ansible_port: 2200
       ansible_user: root

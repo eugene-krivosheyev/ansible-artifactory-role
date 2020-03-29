@@ -5,12 +5,12 @@
 
   pre_tasks:
     - name: "Prepare apt cache"
-      ignore_errors: yes
       apt:
         autoremove: yes
         autoclean: yes
         update_cache: yes
         cache_valid_time: 86400
+      ignore_errors: yes
 
   roles:
     - role: ekr.artifactory

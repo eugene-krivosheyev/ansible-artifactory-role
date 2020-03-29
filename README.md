@@ -1,19 +1,19 @@
-JFrog Artifactory Ansible Role
-==============================
+JFrog Artifactory OSS Ansible Role
+==================================
 
-The simpliest Ansible role for JFrog Artifactory 7 that works on Ubuntu 19.10 hosts with init.d.
+The simpliest Ansible role for JFrog Artifactory OSS 7 that works on Ubuntu 19.10 hosts with init.d.
 
-Role includes all key Artifactory config files in [templates/](templates/) so you can widely customize your Artifactory installation.
+Role includes all *key Artifactory config files* in [templates/](templates/) so you can widely customize your Artifactory installation.
 
 
-Role Variables
+Role variables
 --------------
 
 Variables that could be customized described in [defaults/main.yml](defaults/main.yml).
 
 
-Example _requirements.yml_
---------------------------
+Example _requirements.yml_ to add this role to your playbook
+------------------------------------------------------------
 ```yml
 - src: https://github.com/eugene-krivosheyev/ansible-artifactory-role
   scm: git
@@ -22,10 +22,10 @@ Example _requirements.yml_
 ```
 
 
-Example Playbook
+Example playbook
 ----------------
 ```yml
-- hosts: servers
+- hosts: ci_server
   roles:
     - role: ekr.artifactory
       artifactory_port: 8081
