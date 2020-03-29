@@ -6,10 +6,14 @@
     name: unzip
     state: present
 
+
 - name: Stop linux service
   tags: service
-  command: "service {{ artifactory_os_service_name }} stop"
+  service:
+    name: "{{ artifactory_os_service_name }}"
+    state: stopped
   ignore_errors: yes
+
 
 - name: Get rid of old Artifactory configuration
   tags: config
