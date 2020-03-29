@@ -18,10 +18,22 @@
     group: "{{ artifactory_os_user_name }}"
     mode: u=rw,g=rw,o=r
 
+# - name: Register linux service
+#   tags: service
+#   command: "update-rc.d {{ artifactory_os_service_name }} defaults"
+
 - name: Register linux service
   tags: service
-  command: "update-rc.d {{ artifactory_os_service_name }} defaults"
+  service:
+    name: "{{ artifactory_os_service_name }}"
+    state: reloaded
+
+# - name: Restart linux service
+#   tags: service
+#   command: "service {{ artifactory_os_service_name }} start"
 
 - name: Restart linux service
   tags: service
-  command: "service {{ artifactory_os_service_name }} start"
+  service:
+    name: "{{ artifactory_os_service_name }}"
+    state: restarted
