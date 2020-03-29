@@ -1,0 +1,8 @@
+---
+
+- name: Restart Artifactory linux service
+  tags: service
+  service:
+    name: "{{ artifactory_os_service_name }}"
+    state: restarted
+    sleep: 5
