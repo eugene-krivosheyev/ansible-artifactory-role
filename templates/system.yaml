@@ -71,47 +71,63 @@ shared:
   database:
     ## One of: mysql, oracle, mssql, postgresql, mariadb
     ## Default: Embedded derby
+    {% if artifactory_database_type == 'default derby' %}
+    ## To set everything by default, touch nothing
+    {% endif %}
 
-    #type: "derby"
-    #driver: "org.apache.derby.jdbc.EmbeddedDriver"
-    #url: "jdbc:derby:<DERBY_DB_HOME_PLACE_HOLDER>;create=true"
-    #username: "username"
-    #password: "password"
+    ## Non-default Embedded derby
+    {% if artifactory_database_type == 'derby' %}
+    type: "derby"
+    driver: "org.apache.derby.jdbc.EmbeddedDriver"
+    url: "jdbc:derby:{{ artifactory_database }};create=true" # By default Derby's folder is $ARTIFACTORY_HOME/var/data
+    username: "{{ artifactory_database_user }}"
+    password: "{{ artifactory_database_password }}"
+    {% endif %}
 
     ## Example for postgresql
-    #type: postgresql
-    #driver: org.postgresql.Driver
-    #url: jdbc:postgresql://<your db url, for example: localhost:5432>/artifactory
-    #username: artifactory
-    #password: password
+    {% if artifactory_database_type == 'postgresql' %}
+    type: postgresql
+    driver: org.postgresql.Driver
+    url: "jdbc:postgresql://{{ artifactory_database }}"
+    username: "{{ artifactory_database_user }}"
+    password: "{{ artifactory_database_password }}"
+    {% endif %}
 
     ## Example for mysql
-    #type: mysql
-    #driver: com.mysql.jdbc.Driver
-    #url: jdbc:mysql://<your db url, for example: localhost:3306>/artdb?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false
-    #username: artifactory
-    #password: password
+    {% if artifactory_database_type == 'mysql' %}
+    type: mysql
+    driver: com.mysql.jdbc.Driver
+    url: "jdbc:mysql://{{ artifactory_database }}"
+    username: "{{ artifactory_database_user }}"
+    password: "{{ artifactory_database_password }}"
+    {% endif %}
 
     ## Example for oracle
-    #type: oracle
-    #driver: oracle.jdbc.OracleDriver
-    #url: jdbc:oracle:thin:@<your db server url, for example: localhost:1521>:ORCL
-    #username: artifactory
-    #password: password
+    {% if artifactory_database_type == 'oracle' %}
+    type: oracle
+    driver: oracle.jdbc.OracleDriver
+    url: "jdbc:oracle:{{ artifactory_database }}"
+    username: "{{ artifactory_database_user }}"
+    password: "{{ artifactory_database_password }}"
+    {% endif %}
 
     ## Example for mssql
-    #type: mssql
-    #driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    #url: jdbc:sqlserver://<your db server url, for example: localhost:1433>;databaseName=artifactory;sendStringParametersAsUnicode=false;applicationName=Artifactory Binary Repository
-    #username: artifactory
-    #password: password
+    {% if artifactory_database_type == 'mssql' %}
+    type: mssql
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: "jdbc:sqlserver://{{ artifactory_database }}"
+    username: "{{ artifactory_database_user }}"
+    password: "{{ artifactory_database_password }}"
+    {% endif %}
 
     ## Example for mariadb
-    #type: mariadb
-    #driver: org.mariadb.jdbc.Driver
-    #url: jdbc:mariadb://<your db server url, for example: localhost:3306>/artdb?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false
-    #username: artifactory
-    #password: password
+    {% if artifactory_database_type == 'mariadb' %}
+    type: mariadb
+    driver: org.mariadb.jdbc.Driver
+    url: "jdbc:mariadb://{{ artifactory_database }}"
+    username: "{{ artifactory_database_user }}"
+    password: "{{ artifactory_database_password }}"
+    {% endif %}
 
   ## Script Configuration
   ## Parameters for the application startup scripts

@@ -14,3 +14,37 @@ jfrog_home: "/opt/jfrog" # (tasks/)
 artifactory_home: "{{ jfrog_home }}/artifactory" # (tasks/)
 
 artifactory_java_opts: "-Xms512m -Xmx512m" # (templates/system.yaml)
+
+# templates/system.yaml:shared:database
+artifactory_database_type: 'default derby' # | derby | postgresql | mysql | oracle | mssql | mariadb
+## Showcases for other databases:
+# Non-default Derby
+# artifactory_database_type: 'derby'
+# artifactory_database: "{{ artifactory_home }}/var/data"
+# artifactory_database_user: "{{ artifactory_username }}"
+# artifactory_database_password: "{{ artifactory_password }}"
+# Postgres
+# artifactory_database_type: 'postgresql'
+# artifactory_database: 'localhost:5432/artifactory'
+# artifactory_database_user: "{{ artifactory_username }}"
+# artifactory_database_password: "{{ artifactory_password }}"
+# MySQL
+# artifactory_database_type: 'mysql'
+# artifactory_database: 'localhost:3306/artifactory?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false'
+# artifactory_database_user: "{{ artifactory_username }}"
+# artifactory_database_password: "{{ artifactory_password }}"
+# Oracle
+# artifactory_database_type: 'oracle'
+# artifactory_database: 'thin:@localhost:1521:artifactory'
+# artifactory_database_user: "{{ artifactory_username }}"
+# artifactory_database_password: "{{ artifactory_password }}"
+# MS SQL
+# artifactory_database_type: 'mssql'
+# artifactory_database: 'localhost:1433;databaseName=artifactory;sendStringParametersAsUnicode=false;applicationName=Artifactory Binary Repository'
+# artifactory_database_user: "{{ artifactory_username }}"
+# artifactory_database_password: "{{ artifactory_password }}"
+# MariaDB
+# artifactory_database_type: 'mariadb'
+# artifactory_database: 'localhost:3306/artifactory?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false'
+# artifactory_database_user: "{{ artifactory_username }}"
+# artifactory_database_password: "{{ artifactory_password }}"
