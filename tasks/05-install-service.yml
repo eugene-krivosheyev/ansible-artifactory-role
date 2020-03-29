@@ -18,6 +18,7 @@
     group: "{{ artifactory_os_user_name }}"
     mode: u=rw,g=rw,o=r
 
-- name: Register Atrifactory linux service
+- name: Register Artifactory linux service
   tags: service
   command: "update-rc.d {{ artifactory_os_service_name }} defaults"
+  notify: Restart Artifactory linux service
