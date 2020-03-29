@@ -18,13 +18,12 @@
       postgresql_databases:
         - name: artifactory-db
           owner: artifactory-db-user
-      postgres_users_no_log: false
       postgresql_users:
         - name: artifactory-db-user
           password: artifactory-db-password
-      postgresql_locales:
-        - 'en_US.UTF-8'
-        - 'ru_RU.UTF-8'
+      postgresql_hba_entries: # Very open, for testing only: don't use in production!
+        - { type: local, database: all, user: all, auth_method: peer }
+        - { type: host, database: all, user: all, address: '::1/128', auth_method: md5 }
     
     - role: eugene_krivosheyev.artifactory
       artifactory_port: 8081
