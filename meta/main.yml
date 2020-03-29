@@ -8,6 +8,7 @@ galaxy_info:
 
   galaxy_tags:
     - jfrog
+    - artifactory
     - artifactory-oss
     - ubuntu
     - eoan
