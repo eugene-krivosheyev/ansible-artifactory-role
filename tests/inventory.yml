@@ -2,11 +2,11 @@
 all:
   vars:
     ansible_python_interpreter: /usr/bin/python3
-    ansible_connection: paramiko # Only for password protected connections not for certificates
+    # ansible_connection: paramiko # Only for password protected connections not for certificates
 
   hosts:
     test_host:
-      ansible_host: 127.0.0.1 
-      ansible_port: 2200
-      ansible_user: root
-      ansible_password: root
+      ansible_host: 84.201.157.139 # 127.0.0.1 
+      # ansible_port: 2200
+      ansible_user: admin #root
+      # ansible_password: root
