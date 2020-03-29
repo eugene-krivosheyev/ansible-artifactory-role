@@ -16,12 +16,12 @@
     - role: geerlingguy.postgresql # Testing this role against not only default Derby database but Postgres too.
       become_method: su
       postgresql_databases:
-        - name: artifactorydb
-          owner: artifactory
+        - name: artifactory-db
+          owner: artifactory-db-user
       postgres_users_no_log: false
       postgresql_users:
-        - name: artifactory
-          password: P@ssw0rd
+        - name: artifactory-db-user
+          password: artifactory-db-password
       postgresql_locales:
         - 'en_US.UTF-8'
         - 'ru_RU.UTF-8'
@@ -29,9 +29,9 @@
     - role: eugene_krivosheyev.artifactory
       artifactory_port: 8081
       artifactory_ui_port: 8082
-      artifactory_username: admin
-      artifactory_password: P@ssw0rd
+      artifactory_username: artifactory-web-user
+      artifactory_password: artifactory-web-password
       artifactory_database_type: 'postgresql'
       artifactory_database: 'localhost:5432/artifactorydb'
-      artifactory_database_user: artifactory
-      artifactory_database_password: P@ssw0rd
+      artifactory_database_user: artifactory-db-user
+      artifactory_database_password: artifactory-db-password

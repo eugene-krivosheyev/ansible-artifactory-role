@@ -1,0 +1,69 @@
+---
+
+- name: Download and Install Postgres driver
+  tags: drivers
+  get_url:
+    url: https://jdbc.postgresql.org/download/postgresql-42.2.11.jar
+    dest: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/"
+    mode: u+r,g+r,o+r
+  when: artifactory_database_type == 'postgresql'
+
+
+- name: Download MySQL driver
+  tags: drivers
+  unarchive:
+    src: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.19.zip
+    dest: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/"
+    mode: u+r,g+r,o+r
+  when: artifactory_database_type == 'mysql'
+
+- name: Install MySQL driver
+  tags: drivers
+  copy:
+    src: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/mysql-connector-java-8.0.19/mysql-connector-java-8.0.19.jar"
+    dest: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/"
+    mode: u+r,g+r,o+r
+  when: artifactory_database_type == 'mysql'
+
+
+- name: Download Oracle driver
+  tags: drivers
+  unarchive:
+    src: https://download.oracle.com/otn_software/linux/instantclient/19600/instantclient-basiclite-linux.x64-19.6.0.0.0dbru.zip
+    dest: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/"
+    mode: u+r,g+r,o+r
+  when: artifactory_database_type == 'oracle'
+
+- name: Install Oracle driver
+  tags: drivers
+  copy:
+    src: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/instantclient_19_6/ojdbc8.jar"
+    dest: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/"
+    mode: u+r,g+r,o+r
+  when: artifactory_database_type == 'oracle'
+
+
+- name: Download MS SQL driver
+  tags: drivers
+  unarchive:
+    src: https://download.microsoft.com/download/6/9/9/699205CA-F1F1-4DE9-9335-18546C5C8CBD/sqljdbc_7.4.1.0_enu.tar.gz
+    dest: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/"
+    mode: u+r,g+r,o+r
+  when: artifactory_database_type == 'mssql'
+
+- name: Install MS SQL driver
+  tags: drivers
+  copy:
+    src: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/sqljdbc_7.4/enu/mssql-jdbc-7.4.1.jre8-shaded.jar"
+    dest: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/"
+    mode: u+r,g+r,o+r
+  when: artifactory_database_type == 'mssql'
+
+
+- name: Download and Install MariaDB driver
+  tags: drivers
+  get_url:
+    url: https://downloads.mariadb.com/Connectors/java/latest/mariadb-java-client-2.3.0.jar
+    dest: "{{ artifactory_home }}/var/bootstrap/artifactory/tomcat/lib/"
+    mode: u+r,g+r,o+r
+  when: artifactory_database_type == 'mariadb'

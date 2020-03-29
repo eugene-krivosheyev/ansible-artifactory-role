@@ -9,5 +9,8 @@
 - name: Configure Artifactory
   include: 03-configure-distr.yml
 
+- name: Install databse driver
+  include: 04-install-db-driver.yml
+
 - name: Set up Artifactory as linux service
-  include: 04-install-service.yml
+  include: 05-install-service.yml

@@ -23,27 +23,27 @@ artifactory_database_type: 'default derby' # | derby | postgresql | mysql | orac
 # artifactory_database: "{{ artifactory_home }}/var/data"
 # artifactory_database_user: "{{ artifactory_username }}"
 # artifactory_database_password: "{{ artifactory_password }}"
-# Postgres
+# Postgres: https://www.jfrog.com/confluence/display/JFROG/PostgreSQL
 # artifactory_database_type: 'postgresql'
 # artifactory_database: 'localhost:5432/artifactory'
 # artifactory_database_user: "{{ artifactory_username }}"
 # artifactory_database_password: "{{ artifactory_password }}"
-# MySQL
+# MySQL: https://www.jfrog.com/confluence/display/JFROG/MySQL
 # artifactory_database_type: 'mysql'
 # artifactory_database: 'localhost:3306/artifactory?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false'
 # artifactory_database_user: "{{ artifactory_username }}"
 # artifactory_database_password: "{{ artifactory_password }}"
-# Oracle
+# Oracle: https://www.jfrog.com/confluence/display/JFROG/Oracle
 # artifactory_database_type: 'oracle'
 # artifactory_database: 'thin:@localhost:1521:artifactory'
 # artifactory_database_user: "{{ artifactory_username }}"
 # artifactory_database_password: "{{ artifactory_password }}"
-# MS SQL
+# MS SQL: https://www.jfrog.com/confluence/display/JFROG/Microsoft+SQL+Server
 # artifactory_database_type: 'mssql'
 # artifactory_database: 'localhost:1433;databaseName=artifactory;sendStringParametersAsUnicode=false;applicationName=Artifactory Binary Repository'
 # artifactory_database_user: "{{ artifactory_username }}"
 # artifactory_database_password: "{{ artifactory_password }}"
-# MariaDB
+# MariaDB: https://www.jfrog.com/confluence/display/JFROG/MariaDB
 # artifactory_database_type: 'mariadb'
 # artifactory_database: 'localhost:3306/artifactory?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false'
 # artifactory_database_user: "{{ artifactory_username }}"
