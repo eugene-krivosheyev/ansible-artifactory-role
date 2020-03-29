@@ -2,3 +2,5 @@
   scm: git
   name: eugene_krivosheyev.artifactory
   version: master
+
+- src: geerlingguy.postgresql
