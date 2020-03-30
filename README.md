@@ -19,7 +19,7 @@ Variables that could be customized described in [defaults/main.yml](https://gith
 Example _requirements.yml_ to add this role to your playbook
 ------------------------------------------------------------
 ```yml
-- src: eugene_krivosheyev.artifactory
+- eugene_krivosheyev.artifactory
 ```
 
 
