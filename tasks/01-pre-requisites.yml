@@ -1,5 +1,13 @@
 ---
 
+- name: "Ensure hardware pre-requisites for Artifactory {{ artifactory_file_version }} with default embedded Derby database"
+  tags: hardware_check
+  assert:
+    that:
+      - ansible_processor_vcpus >= 1 # Virtual CPU cores.
+      - ansible_memfree_mb > artifactory_java_max_mb + 128 # Free RAM mb for JVM + reserve
+      - ((ansible_mounts|first).size_available / 1000000000.) >= 1 # Free disk Gb for Artifactory and simple repository.
+
 - name: Ensure unzip utility
   tags: unzip
   package: 

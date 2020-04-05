@@ -13,7 +13,8 @@ artifactory_corp_maven_repo: 'com.acme.corp' # Maven repo will be created by def
 jfrog_home: "/opt/jfrog" # (tasks/)
 artifactory_home: "{{ jfrog_home }}/artifactory" # (tasks/)
 
-artifactory_java_opts: "-Xms512m -Xmx512m" # (templates/system.yaml)
+artifactory_java_max_mb: 512
+artifactory_java_opts: "-Xms512m -Xmx{{ artifactory_java_max_mb }}m" # (templates/system.yaml)
 
 # templates/system.yaml:shared:database
 artifactory_database_type: 'default derby' # | derby | postgresql | mysql | oracle | mssql | mariadb
