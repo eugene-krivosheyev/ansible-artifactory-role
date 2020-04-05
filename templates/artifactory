@@ -11,23 +11,44 @@
 SCRIPT="{{ artifactory_home }}/app/bin/artifactory.sh"
 
 start() {
+  {% if become_method == 'su' %}
   su -c "$SCRIPT start" {{ artifactory_os_user_name }}
+  {% else %}
+  sudo -u {{ artifactory_os_user_name }} $SCRIPT start
+  {% endif %}
+
 }
 
 stop() {
+  {% if become_method == 'su' %}
   su -c "$SCRIPT stop" {{ artifactory_os_user_name }}
+  {% else %}
+  sudo -u {{ artifactory_os_user_name }} $SCRIPT stop
+  {% endif %}
 }
 
 uninstall() {
+  {% if become_method == 'su' %}
   su -c "$SCRIPT uninstall" {{ artifactory_os_user_name }}
+  {% else %}
+  sudo -u {{ artifactory_os_user_name }} $SCRIPT uninstall
+  {% endif %}
 }
 
 restart() {
+  {% if become_method == 'su' %}
   su -c "$SCRIPT restart" {{ artifactory_os_user_name }}
+  {% else %}
+  sudo -u {{ artifactory_os_user_name }} $SCRIPT restart
+  {% endif %}
 }
 
 status() {
+  {% if become_method == 'su' %}
   su -c "$SCRIPT status" {{ artifactory_os_user_name }}
+  {% else %}
+  sudo -u {{ artifactory_os_user_name }} $SCRIPT status
+  {% endif %}
 }
 
 case "$1" in

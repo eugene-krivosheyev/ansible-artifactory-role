@@ -37,7 +37,7 @@ Example playbook
 
 Known issues
 ------------
-If you deploy Artifacory with PostgreSQL, you may face issue with property *become_method* for role _geerlingguy.postgresql_ just like described in [test case](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml).
+1. If you deploy Artifacory with PostgreSQL, you may face issue with property *become_method* for role that installs PostgreSQL just like described in [test case](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml). To solve just use appropriate *become_method* for role that installs PostrgeSQL that exists at your Linux distr.
 
 License
 -------
