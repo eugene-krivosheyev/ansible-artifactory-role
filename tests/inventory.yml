@@ -10,3 +10,4 @@ all:
       ansible_port: 2200
       ansible_user: root
       ansible_password: root
+      ansible_become_method: su # Need by choosen distr for test Docker env. May fail while running on other hosts. If so use 'sudo' instead or skip setting this var.

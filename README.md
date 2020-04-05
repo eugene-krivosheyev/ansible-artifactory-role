@@ -11,22 +11,22 @@ Role requirements
 - _Production Database_. Artifactory uses simple lightweigth database called Derby by default. If you don't plan to host high-load/fail-over solution with your Artifactory instance, Derby could be enough. If you plan to use production level database, you have to install and cofigure it yourself in your playbook. Already done Ansible Galaxy roles will help, e.g. geerlingguy.postgresql, geerlingguy.mysql, etc. After you describe database installation and configuration with your playbook, [it required to configure Artifactory](https://www.jfrog.com/confluence/display/JFROG/Configuring+the+Database) to work with your database. After you add driver downloading, creating database itself and database user to your playbook, you're required to configure Atrifactory role to work with your just configured database by [setting properties artifactory_database_*](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/defaults/main.yml) to correct values. As an example you can take a look at the [test playbook with Postgres](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml).
 
 
-Role variables
---------------
-Variable _ansible_become_method_ is used to generate service script so don't forget to set it to 'su' explicitly if your host distr have _su_ only. Default is 'sudo' so if your host distr have it, just skip setting _ansible_become_method_ in your playbook.
+[Role variables](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/defaults/main.yml)
+----------------
+Variable 'ansible_become_method' is used to generate service script. It have default value 'sudo' so if your target host don't have sudo command you have to explicitly set it to 'su'. Because it depends on target hosts linux distr better set it on per-host basis in your inventory file. See [example](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/inventory.yml) of setting 'ansible_become_method' variable for inventory hosts.
 
 Other variables that could be customized described in [defaults/main.yml](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/defaults/main.yml).
 
 
-Example _requirements.yml_ to add this role to your playbook
+[Example _requirements.yml_](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/requirements.yml) to add this role to your playbook
 ------------------------------------------------------------
 ```yml
 - eugene_krivosheyev.artifactory
 ```
 
 
-Example playbook
-----------------
+[Example playbook](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml)
+------------------
 ```yml
 - hosts: ci_server
   roles:
@@ -36,10 +36,19 @@ Example playbook
       artifactory_username: admin
       artifactory_password: P@ssw0rd
 ```
+Also you can refer [test role usage](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml) for example.
+
 
 Known issues
 ------------
-If you deploy Artifacory with PostgreSQL, you may face issue with property *become_method* for role that installs PostgreSQL just like described in [test case](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml). To solve just use appropriate *become_method* for role that installs PostrgeSQL that exists at your Linux distr.
+1. You may face issue if target host don't have command 'sudo'. In this case just set default priviledge escalation command to 'su'. Because it depends on target hosts linux distr better set it on per-host basis in your inventory file. See [example](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/inventory.yml) of setting 'ansible_become_method' variable for inventory hosts.
+2. You may face issue with 'su' command timeouts if it set as default privilege escalation command for some hosts.
+```bash
+TASK [geerlingguy.postgresql : Ensure PostgreSQL Python libraries are installed.] ********
+fatal: [test_host]: FAILED! => {"msg": "Timeout (12s) waiting for privilege escalation prompt: "}
+```
+In this case set default priviledge escalation command to 'sudo' with 'ansible_become_method' variable explicitely. Better set it on per-host basis in your inventory file. 
+Or just skip setting 'ansible_become_method' at all because of its default is 'sudo' already. 
 
 License
 -------
