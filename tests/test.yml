@@ -25,6 +25,7 @@
         - { type: host, database: all, user: all, address: '127.0.0.1/32', auth_method: md5 }
     
     - role: eugene_krivosheyev.artifactory
+      ansible_become_method: su
       artifactory_port: 8081
       artifactory_ui_port: 8082
       artifactory_username: artifactory-web-user

@@ -48,3 +48,5 @@ artifactory_database_type: 'default derby' # | derby | postgresql | mysql | orac
 # artifactory_database: 'localhost:3306/artifactory?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false'
 # artifactory_database_user: "{{ artifactory_username }}"
 # artifactory_database_password: "{{ artifactory_password }}"
+
+ansible_become_method: sudo

@@ -13,7 +13,9 @@ Role requirements
 
 Role variables
 --------------
-Variables that could be customized described in [defaults/main.yml](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/defaults/main.yml).
+Variable _ansible_become_method_ is used to generate service script so don't forget to set it to 'su' explicitly if your host distr have _su_ only. Default is 'sudo' so if your host distr have it, just skip setting _ansible_become_method_ in your playbook.
+
+Other variables that could be customized described in [defaults/main.yml](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/defaults/main.yml).
 
 
 Example _requirements.yml_ to add this role to your playbook
@@ -37,7 +39,7 @@ Example playbook
 
 Known issues
 ------------
-1. If you deploy Artifacory with PostgreSQL, you may face issue with property *become_method* for role that installs PostgreSQL just like described in [test case](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml). To solve just use appropriate *become_method* for role that installs PostrgeSQL that exists at your Linux distr.
+If you deploy Artifacory with PostgreSQL, you may face issue with property *become_method* for role that installs PostgreSQL just like described in [test case](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml). To solve just use appropriate *become_method* for role that installs PostrgeSQL that exists at your Linux distr.
 
 License
 -------
