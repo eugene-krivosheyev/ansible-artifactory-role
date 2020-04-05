@@ -5,8 +5,8 @@
   assert:
     that:
       - ansible_processor_vcpus >= 1 # Virtual CPU cores.
-      - ansible_memfree_mb >= artifactory_java_max_mb + 128 # Free RAM mb for JVM + reserve
-      - ((ansible_mounts|first).size_available|float / 1000000000) >= 1 # Free disk Gb for Artifactory and simple repository.
+      - ansible_memfree_mb >= 1024 # Free RAM mb for comfort Artifactory experience
+      - ((ansible_mounts|first).size_available|float / 1000000000) >= 1 # Free disk Gb for Artifactory installation and metadata.
 
 - name: Ensure unzip utility
   tags: unzip

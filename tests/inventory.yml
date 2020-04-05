@@ -2,13 +2,12 @@
 all:
   vars:
     ansible_python_interpreter: /usr/bin/python3
-    # ansible_connection: paramiko # Only for password protected connections not for certificates
+    ansible_connection: paramiko # Only for password protected connections not for certificates
 
   hosts:
     test_host:
-      ansible_host: 84.201.134.115 #127.0.0.1 
-      # ansible_port: 2200
-      ansible_user: admin #root
-      # ansible_password: root
-      # ansible_become_method: su # Need by choosen distr for test Docker env. May fail while running on other hosts. If so use 'sudo' instead or skip setting this var.
-      ansible_ssh_private_key_file: /Users/eugene/Dropbox/Eugene/Backups/agile-practices-dev.pem
+      ansible_host: 127.0.0.1 
+      ansible_port: 2200
+      ansible_user: root
+      ansible_password: root
+      ansible_become_method: su # Need by choosen distr for test Docker env. May fail while running on other hosts. If so use 'sudo' instead or skip setting this var.

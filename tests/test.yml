@@ -9,8 +9,8 @@
       assert:
         that:
           - ansible_processor_vcpus >= 2 # Virtual CPU cores.
-          - ansible_memfree_mb >= artifactory_java_max_mb + 128 + 800 # Free RAM mb for JVM + reserve + PostgreSQL
-          - ((ansible_mounts|first).size_available|float / 1000000000) >= 1.5 # Free disk Gb for Artifactory and simple repository.
+          - ansible_memfree_mb >= 1024 + 512 # Free RAM mb for comfort Atifactory + PostgreSQL experience
+          - ((ansible_mounts|first).size_available|float / 1000000000) >= 1.5 # Free disk Gb for Artifactory installation and PG installation
 
 
     - name: "Prepare apt cache"
