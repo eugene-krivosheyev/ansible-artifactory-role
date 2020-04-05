@@ -35,6 +35,9 @@ Example playbook
       artifactory_password: P@ssw0rd
 ```
 
+Known issues
+------------
+If you deploy Artifacory with PostgreSQL, you may face issue with property *become_method* for role _geerlingguy.postgresql_ just like described in [test case](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/test.yml).
 
 License
 -------
