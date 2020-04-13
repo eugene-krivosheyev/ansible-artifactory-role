@@ -40,9 +40,13 @@ Also you can refer [test role usage](https://github.com/eugene-krivosheyev/ansib
 
 
 Known issues
-------------
-1. You may face issue if target host don't have command 'sudo'. In this case just set default priviledge escalation command to 'su'. Because it depends on target hosts linux distr better set it on per-host basis in your inventory file. See [example](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/inventory.yml) of setting 'ansible_become_method' variable for inventory hosts.
-2. You may face issue with 'su' command timeouts if it set as default privilege escalation command for some hosts.
+============
+1. You may face issue if target host don't have command 'sudo'
+-------------------------------------------------------------- 
+In this case just set default priviledge escalation command to 'su'. Because it depends on target hosts linux distr better set it on per-host basis in your inventory file. See [example](https://github.com/eugene-krivosheyev/ansible-artifactory-role/blob/master/tests/inventory.yml) of setting 'ansible_become_method' variable for inventory hosts.
+
+2. You may face issue with 'su' command timeouts if it set as default privilege escalation command for some hosts
+-----------------------------------------------------------------------------------------------------------------
 ```bash
 TASK [geerlingguy.postgresql : Ensure PostgreSQL Python libraries are installed.] ********
 fatal: [test_host]: FAILED! => {"msg": "Timeout (12s) waiting for privilege escalation prompt: "}
@@ -50,6 +54,40 @@ fatal: [test_host]: FAILED! => {"msg": "Timeout (12s) waiting for privilege esca
 In this case set default priviledge escalation command to 'sudo' with 'ansible_become_method' variable explicitely. Better set it on per-host basis in your inventory file. 
 Or just skip setting 'ansible_become_method' at all because of its default is 'sudo' already. 
 
+3. Artifactory tries to start but then get permanent error at web interface
+---------------------------------------------------------------------------
+```json
+{
+  "errors" : [ {
+    "status" : 500,
+    "message" : "Artifactory failed to initialize: check Artifactory logs for errors."
+  } ]
+}
+```
+And in logs (e.g. */opt/jfrog/artifactory/var/log/console.log*) you have
+```log
+.
+Could not validate router Check-url: http://::1:8082/router/api/v1/system/ping
+.
+.
+.
+Registration with router on URL http://localhost:8046 failed with error: UNAVAILABLE: io exception.
+Registration with router on URL http://localhost:8046 failed with error: UNAVAILABLE: io exception.
+Registration with router on URL http://localhost:8046 failed with error: UNAVAILABLE: io exception.
+.
+```
+This means that one of Artifactory component uses 'localhost' landed to IPv6's "localhost" called '::1'.
+
+To fix you can try [force Java to use IPv4](https://superuser.com/questions/453298/how-to-force-java-to-use-ipv4-instead-ipv6) or 
+manually remove binding of IPv6 from 'localhost' at your */etc/hosts*:
+```/etc/hosts
+127.0.0.1       localhost   
+::1             localhost  # <-- Remove any type of such binding "::1 -> localhost" at any string 
+::1             ip6-localhost ip6-loopback
+ff02::1         ip6-allnodes
+ff02::2         ip6-allrouters
+```
+
 License
--------
+=======
 BSD
