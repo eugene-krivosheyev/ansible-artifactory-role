@@ -87,6 +87,7 @@ manually remove binding of IPv6 from 'localhost' at your */etc/hosts*:
 ff02::1         ip6-allnodes
 ff02::2         ip6-allrouters
 ```
+In case of reproducing issue just [turn IPv6 off](https://www.techrepublic.com/article/how-to-disable-ipv6-through-grub-in-linux/).
 
 License
 =======
